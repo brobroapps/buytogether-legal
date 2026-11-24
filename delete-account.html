@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Удаление аккаунта и данных — КупимВместе / BuyTogether</title>
+  <style>
+    :root {
+      --primary: #146C43;
+      --primary-dark: #0D4D2F;
+      --primary-container: #C8F0D8;
+      --on-primary-container: #002111;
+      --danger: #BA1A1A;
+      --danger-bg: #FFDAD6;
+      --bg: #FAF8F4;
+      --surface: #FFFFFF;
+      --surface-low: #F3F4EE;
+      --text: #181D1A;
+      --muted: #404943;
+      --border: #D5DDD7;
+      --radius: 16px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    header {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      color: #fff;
+      padding: 36px 20px 44px;
+    }
+    .wrap {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      color: var(--primary-container);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.10);
+    }
+    .nav-links a:hover { background: rgba(255,255,255,0.18); }
+    .lang-switch {
+      display: inline-flex;
+      background: rgba(255,255,255,0.14);
+      border-radius: 999px;
+      padding: 3px;
+    }
+    .lang-switch button {
+      border: 0;
+      background: transparent;
+      color: #fff;
+      padding: 6px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 13px;
+    }
+    .lang-switch button.active {
+      background: #fff;
+      color: var(--primary-dark);
+    }
+    h1 { margin: 0 0 8px; font-size: 28px; line-height: 1.25; }
+    .subtitle { margin: 0; color: var(--primary-container); font-size: 15px; }
+    main { padding: 0 16px 56px; margin-top: -20px; }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: 0 8px 24px rgba(13, 77, 47, 0.06);
+      margin-bottom: 20px;
+    }
+    h2 { color: var(--primary); font-size: 20px; margin: 0 0 12px; }
+    p, li { color: var(--muted); font-size: 15px; }
+    ul, ol { padding-left: 20px; }
+    li { margin-bottom: 6px; }
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 14px;
+      margin: 16px 0;
+    }
+    .info-tile {
+      background: var(--surface-low);
+      border-radius: 12px;
+      padding: 14px 16px;
+    }
+    .info-tile strong { display: block; color: var(--text); margin-bottom: 4px; font-size: 14px; }
+    .form-group { margin-bottom: 16px; }
+    label {
+      display: block;
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+    input[type="email"], input[type="text"], select, textarea {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      font: inherit;
+      font-size: 15px;
+      background: #fff;
+      color: var(--text);
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: 2px solid var(--primary);
+      border-color: var(--primary);
+    }
+    .checkbox-row {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      background: var(--danger-bg);
+      color: #410002;
+      padding: 12px 14px;
+      border-radius: 10px;
+      margin: 16px 0;
+      font-size: 14px;
+    }
+    .checkbox-row input { margin-top: 3px; width: 18px; height: 18px; accent-color: var(--danger); }
+    .checkbox-row label { margin: 0; font-weight: 500; color: #410002; cursor: pointer; }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .btn-danger {
+      background: var(--danger);
+      color: #fff;
+      border: 0;
+      border-radius: 10px;
+      padding: 13px 20px;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+    }
+    .btn-danger:hover { opacity: 0.92; }
+    .btn-secondary {
+      background: var(--surface-low);
+      color: var(--text);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 13px 18px;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .status-msg {
+      display: none;
+      margin-top: 16px;
+      padding: 14px 16px;
+      border-radius: 10px;
+      font-size: 14px;
+    }
+    .status-msg.ok {
+      display: block;
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+    }
+    .status-msg.err {
+      display: block;
+      background: var(--danger-bg);
+      color: #410002;
+    }
+    .preview-box {
+      display: none;
+      margin-top: 14px;
+      background: var(--surface-low);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px;
+      font-family: monospace;
+      font-size: 13px;
+      white-space: pre-wrap;
+      color: var(--text);
+    }
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+      padding-bottom: 32px;
+    }
+    [data-lang="en"] { display: none; }
+    body.en [data-lang="ru"] { display: none; }
+    body.en [data-lang="en"] { display: block; }
+  </style>
+</head>
+<body class="en">
+  <header>
+    <div class="wrap">
+      <div class="topbar">
+        <div class="nav-links">
+          <a href="./index.html" data-lang="ru">Главная</a>
+          <a href="./index.html" data-lang="en">Home</a>
+          <a href="./privacy-policy.html" data-lang="ru">Политика конфиденциальности</a>
+          <a href="./privacy-policy.html" data-lang="en">Privacy Policy</a>
+        </div>
+        <div class="lang-switch" role="group" aria-label="Language switcher">
+          <button id="btn-ru" onclick="setLang('ru')">Русский</button>
+          <button id="btn-en" class="active" onclick="setLang('en')">English</button>
+        </div>
+      </div>
+
+      <div data-lang="ru">
+        <h1>Запрос на удаление аккаунта и данных</h1>
+        <p class="subtitle">Публичная страница для приложения «КупимВместе» (BuyTogether)</p>
+      </div>
+      <div data-lang="en">
+        <h1>Request Account &amp; Data Deletion</h1>
+        <p class="subtitle">Public deletion portal for BuyTogether (КупимВместе)</p>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <section class="card">
+        <div data-lang="ru">
+          <h2>Как удалить аккаунт</h2>
+          <p>Вы можете удалить свой аккаунт <strong>«КупимВместе»</strong> (<code>com.brobroapps.buytogether</code>) и все связанные данные двумя способами:</p>
+          <ol>
+            <li><strong>Мгновенно в приложении:</strong> откройте вкладку <em>«Профиль» → «Удалить аккаунт»</em> и подтвердите действие. Удаление произойдёт сразу без ожидания.</li>
+            <li><strong>Через форму ниже (без входа в приложение):</strong> заполните форму и отправьте запрос разработчику (<a href="mailto:brobroapps@gmail.com">brobroapps@gmail.com</a>). Для защиты от несанкционированного удаления мы проверяем запрос по адресу Google-аккаунта и выполняем удаление в течение <strong>до 7 дней</strong>.</li>
+          </ol>
+
+          <div class="info-grid">
+            <div class="info-tile">
+              <strong>Что удаляется полностью</strong>
+              Учётная запись Firebase Auth, профиль (имя, email, аватар), все личные списки и товары, их история, а также группы, где вы владелец (списки, товары, инвайт-коды), и ваше участие в чужих группах.
+            </div>
+            <div class="info-tile">
+              <strong>Сроки обработки и хранения</strong>
+              В приложении — немедленно. По веб-запросу — в течение 7 дней после подтверждения владельца email. Записи в истории общих групп других владельцев автоматически удаляются через 7 дней.
+            </div>
+          </div>
+        </div>
+
+        <div data-lang="en">
+          <h2>How to Delete Your Account</h2>
+          <p>You can delete your <strong>BuyTogether</strong> (<code>com.brobroapps.buytogether</code>) account and associated data in two ways:</p>
+          <ol>
+            <li><strong>Instantly inside the App:</strong> open the <em>Profile</em> tab → tap <em>Delete account</em> and confirm. Deletion takes effect immediately.</li>
+            <li><strong>Via this web form (without opening the App):</strong> submit the form below to send a request to the developer (<a href="mailto:brobroapps@gmail.com">brobroapps@gmail.com</a>). To prevent unauthorized requests, we verify ownership via the Google account email and complete deletion within <strong>7 days</strong>.</li>
+          </ol>
+
+          <div class="info-grid">
+            <div class="info-tile">
+              <strong>Data Permanently Deleted</strong>
+              Firebase Auth account, user profile (name, email, avatar), all personal lists, items, and history, all groups you own (lists, items, invite codes), and your membership in shared groups.
+            </div>
+            <div class="info-tile">
+              <strong>Retention &amp; Timeframe</strong>
+              In-app deletion is immediate. Web requests are processed within 7 days after email verification. Past activity entries in non-owned groups expire automatically after 7 days.
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div data-lang="ru">
+          <h2>Форма запроса на удаление</h2>
+          <p>Укажите email Google-аккаунта, с которым вы входили в «КупимВместе».</p>
+        </div>
+        <div data-lang="en">
+          <h2>Deletion Request Form</h2>
+          <p>Enter the Google Account email you used to sign in to BuyTogether.</p>
+        </div>
+
+        <form id="deletionForm" onsubmit="return submitDeletionRequest(event)">
+          <div class="form-group">
+            <label for="emailInput" id="lbl-email">Email Google-аккаунта *</label>
+            <input type="email" id="emailInput" required placeholder="name@gmail.com">
+          </div>
+
+          <div class="form-group">
+            <label for="scopeSelect" id="lbl-scope">Объём удаления *</label>
+            <select id="scopeSelect">
+              <option value="full" id="opt-full">Полное удаление аккаунта и всех данных (Full account &amp; data deletion)</option>
+              <option value="partial" id="opt-partial">Удалить только личные списки и историю, сохранив аккаунт (Delete personal lists &amp; history only)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="nameInput" id="lbl-name">Имя в приложении (необязательно)</label>
+            <input type="text" id="nameInput" maxlength="60" placeholder="Например: Алиса / Alice">
+          </div>
+
+          <div class="form-group">
+            <label for="noteInput" id="lbl-note">Комментарий или причина (необязательно)</label>
+            <textarea id="noteInput" rows="3" maxlength="500" placeholder="Дополнительная информация для подтверждения запроса"></textarea>
+          </div>
+
+          <div class="checkbox-row">
+            <input type="checkbox" id="confirmCheck" required>
+            <label for="confirmCheck" id="lbl-confirm">
+              Я подтверждаю, что являюсь владельцем указанного аккаунта и понимаю, что удаление аккаунта и данных является безвозвратным.
+            </label>
+          </div>
+
+          <div class="actions">
+            <button type="submit" class="btn-danger" id="btn-submit">Отправить запрос через почту</button>
+            <button type="button" class="btn-secondary" id="btn-copy" onclick="copyRequestText()">Скопировать текст обращения</button>
+          </div>
+
+          <div id="statusBox" class="status-msg"></div>
+          <pre id="previewBox" class="preview-box"></pre>
+        </form>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    © 2026 КупимВместе / BuyTogether • <a href="mailto:brobroapps@gmail.com">brobroapps@gmail.com</a>
+  </footer>
+
+  <script>
+    const DEV_EMAIL = "brobroapps@gmail.com";
+    let currentLang = "en";
+
+    const I18N = {
+      ru: {
+        email: "Email Google-аккаунта *",
+        scope: "Объём удаления *",
+        optFull: "Полное удаление аккаунта и всех данных",
+        optPartial: "Удалить только личные списки и историю (без удаления аккаунта)",
+        name: "Имя в приложении (необязательно)",
+        namePh: "Например: Алиса",
+        note: "Комментарий (необязательно)",
+        notePh: "Дополнительные сведения",
+        confirm: "Я подтверждаю, что являюсь владельцем указанного аккаунта и понимаю, что удаление является необратимым.",
+        submit: "Отправить запрос через почту",
+        copy: "Скопировать текст обращения",
+        errMissing: "Пожалуйста, введите корректный email и отметьте подтверждение.",
+        okMail: "Открыт почтовый клиент с готовым письмом на " + DEV_EMAIL + ". Если письмо не открылось автоматически, скопируйте текст ниже и отправьте его с вашего email.",
+        okCopy: "Текст обращения скопирован в буфер обмена. Отправьте его на адрес " + DEV_EMAIL + " с указанного вами Google-email."
+      },
+      en: {
+        email: "Google Account Email *",
+        scope: "Deletion Scope *",
+        optFull: "Full deletion of account and all associated data",
+        optPartial: "Delete personal lists & history only (keep account)",
+        name: "Display name in the App (optional)",
+        namePh: "E.g.: Alice",
+        note: "Additional comments (optional)",
+        notePh: "Optional details to help locate your account",
+        confirm: "I confirm that I am the owner of this account and understand that data deletion is permanent and irreversible.",
+        submit: "Send Request via Email",
+        copy: "Copy Request Text",
+        errMissing: "Please enter a valid email address and check the confirmation box.",
+        okMail: "Your email client should open with a pre-filled message to " + DEV_EMAIL + ". If it didn't open, copy the text below and send it from your email.",
+        okCopy: "Request text copied to clipboard. Please send it to " + DEV_EMAIL + " from your registered Google email."
+      }
+    };
+
+    function setLang(lang) {
+      currentLang = lang;
+      document.body.classList.toggle("en", lang === "en");
+      document.documentElement.lang = lang;
+      document.getElementById("btn-ru").classList.toggle("active", lang === "ru");
+      document.getElementById("btn-en").classList.toggle("active", lang === "en");
+      const t = I18N[lang];
+      document.getElementById("lbl-email").textContent = t.email;
+      document.getElementById("lbl-scope").textContent = t.scope;
+      document.getElementById("opt-full").textContent = t.optFull;
+      document.getElementById("opt-partial").textContent = t.optPartial;
+      document.getElementById("lbl-name").textContent = t.name;
+      document.getElementById("nameInput").placeholder = t.namePh;
+      document.getElementById("lbl-note").textContent = t.note;
+      document.getElementById("noteInput").placeholder = t.notePh;
+      document.getElementById("lbl-confirm").textContent = t.confirm;
+      document.getElementById("btn-submit").textContent = t.submit;
+      document.getElementById("btn-copy").textContent = t.copy;
+      try { localStorage.setItem("gp_lang", lang); } catch (e) {}
+    }
+
+    function buildPayload() {
+      const email = document.getElementById("emailInput").value.trim();
+      const scope = document.getElementById("scopeSelect").value;
+      const name = document.getElementById("nameInput").value.trim() || "-";
+      const note = document.getElementById("noteInput").value.trim() || "-";
+      const confirmed = document.getElementById("confirmCheck").checked;
+      if (!email || !email.includes("@") || !confirmed) return null;
+
+      const isFull = scope === "full";
+      const subject = currentLang === "ru"
+        ? (isFull ? "[КупимВместе] Запрос на удаление аккаунта: " : "[КупимВместе] Запрос на удаление личных данных: ") + email
+        : (isFull ? "[BuyTogether] Account Deletion Request: " : "[BuyTogether] Data Deletion Request: ") + email;
+
+      const body = currentLang === "ru"
+        ? "Приложение: КупимВместе (com.brobroapps.buytogether)\n" +
+          "Тип запроса: " + (isFull ? "Полное удаление аккаунта и всех данных" : "Удаление только личных списков и истории") + "\n" +
+          "Email Google-аккаунта: " + email + "\n" +
+          "Имя в приложении: " + name + "\n" +
+          "Комментарий: " + note + "\n" +
+          "Дата: " + new Date().toISOString().slice(0, 10) + "\n\n" +
+          "Прошу безвозвратно удалить указанные данные и подтвердить выполнение ответным письмом."
+        : "App: BuyTogether (com.brobroapps.buytogether)\n" +
+          "Request Type: " + (isFull ? "Full account and data deletion" : "Delete personal lists and history only") + "\n" +
+          "Google Account Email: " + email + "\n" +
+          "Display Name: " + name + "\n" +
+          "Comments: " + note + "\n" +
+          "Date: " + new Date().toISOString().slice(0, 10) + "\n\n" +
+          "Please permanently delete the requested data and confirm via reply email.";
+
+      return { subject, body };
+    }
+
+    function showStatus(ok, message, previewText) {
+      const box = document.getElementById("statusBox");
+      box.className = "status-msg " + (ok ? "ok" : "err");
+      box.textContent = message;
+      const pre = document.getElementById("previewBox");
+      if (previewText) {
+        pre.style.display = "block";
+        pre.textContent = previewText;
+      } else {
+        pre.style.display = "none";
+      }
+    }
+
+    function submitDeletionRequest(event) {
+      event.preventDefault();
+      const t = I18N[currentLang];
+      const payload = buildPayload();
+      if (!payload) {
+        showStatus(false, t.errMissing);
+        return false;
+      }
+      const mailto = "mailto:" + encodeURIComponent(DEV_EMAIL) +
+        "?subject=" + encodeURIComponent(payload.subject) +
+        "&body=" + encodeURIComponent(payload.body);
+      showStatus(true, t.okMail, "To: " + DEV_EMAIL + "\nSubject: " + payload.subject + "\n\n" + payload.body);
+      window.location.href = mailto;
+      return false;
+    }
+
+    function copyRequestText() {
+      const t = I18N[currentLang];
+      const payload = buildPayload();
+      if (!payload) {
+        showStatus(false, t.errMissing);
+        return;
+      }
+      const fullText = "To: " + DEV_EMAIL + "\nSubject: " + payload.subject + "\n\n" + payload.body;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(fullText).then(function() {
+          showStatus(true, t.okCopy, fullText);
+        }, function() {
+          showStatus(true, t.okCopy, fullText);
+        });
+      } else {
+        showStatus(true, t.okCopy, fullText);
+      }
+    }
+
+    (function() {
+      const urlLang = new URLSearchParams(location.search).get("lang");
+      const saved = (function(){ try { return localStorage.getItem("gp_lang"); } catch(e){ return null; } })();
+      const init = urlLang || saved || (navigator.language && navigator.language.startsWith("en") ? "en" : "en");
+      setLang(init === "ru" ? "ru" : "en");
+    })();
+  </script>
+</body>
+</html>

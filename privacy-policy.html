@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Политика конфиденциальности — КупимВместе / BuyTogether</title>
+  <style>
+    :root {
+      --primary: #146C43;
+      --primary-dark: #0D4D2F;
+      --primary-container: #C8F0D8;
+      --on-primary-container: #002111;
+      --bg: #FAF8F4;
+      --surface: #FFFFFF;
+      --surface-low: #F3F4EE;
+      --text: #181D1A;
+      --muted: #404943;
+      --border: #D5DDD7;
+      --radius: 16px;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.65;
+    }
+    header {
+      background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+      color: #fff;
+      padding: 36px 20px 44px;
+    }
+    .wrap {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+    .topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    .nav-links {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .nav-links a {
+      color: var(--primary-container);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.10);
+    }
+    .nav-links a:hover { background: rgba(255,255,255,0.18); }
+    .lang-switch {
+      display: inline-flex;
+      background: rgba(255,255,255,0.14);
+      border-radius: 999px;
+      padding: 3px;
+    }
+    .lang-switch button {
+      border: 0;
+      background: transparent;
+      color: #fff;
+      padding: 6px 14px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 13px;
+    }
+    .lang-switch button.active {
+      background: #fff;
+      color: var(--primary-dark);
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 28px;
+      line-height: 1.25;
+    }
+    .subtitle {
+      margin: 0;
+      color: var(--primary-container);
+      font-size: 15px;
+    }
+    main {
+      padding: 0 16px 56px;
+      margin-top: -20px;
+    }
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: 0 8px 24px rgba(13, 77, 47, 0.06);
+      margin-bottom: 20px;
+    }
+    h2 {
+      color: var(--primary);
+      font-size: 20px;
+      margin: 26px 0 10px;
+      padding-top: 10px;
+      border-top: 1px solid var(--surface-low);
+    }
+    h2:first-of-type {
+      margin-top: 8px;
+      border-top: 0;
+      padding-top: 0;
+    }
+    h3 {
+      font-size: 16px;
+      margin: 16px 0 6px;
+      color: var(--text);
+    }
+    p, li { color: var(--muted); font-size: 15px; }
+    ul { padding-left: 20px; }
+    li { margin-bottom: 6px; }
+    .meta-box {
+      background: var(--surface-low);
+      border-radius: 12px;
+      padding: 14px 18px;
+      font-size: 14px;
+      margin-bottom: 18px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+    }
+    .meta-box strong { color: var(--text); display: block; font-size: 12px; text-transform: uppercase; letter-spacing: .04em; }
+    .cta-box {
+      background: var(--primary-container);
+      color: var(--on-primary-container);
+      border-radius: 12px;
+      padding: 16px 18px;
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: var(--primary);
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .cta-btn:hover { background: var(--primary-dark); }
+    footer {
+      text-align: center;
+      color: var(--muted);
+      font-size: 13px;
+      padding-bottom: 32px;
+    }
+    [data-lang="en"] { display: none; }
+    body.en [data-lang="ru"] { display: none; }
+    body.en [data-lang="en"] { display: block; }
+  </style>
+</head>
+<body class="en">
+  <header>
+    <div class="wrap">
+      <div class="topbar">
+        <div class="nav-links">
+          <a href="./index.html" data-lang="ru">Главная</a>
+          <a href="./index.html" data-lang="en">Home</a>
+          <a href="./delete-account.html" data-lang="ru">Удаление аккаунта</a>
+          <a href="./delete-account.html" data-lang="en">Delete Account</a>
+        </div>
+        <div class="lang-switch" role="group" aria-label="Language switcher">
+          <button id="btn-ru" onclick="setLang('ru')">Русский</button>
+          <button id="btn-en" class="active" onclick="setLang('en')">English</button>
+        </div>
+      </div>
+
+      <div data-lang="ru">
+        <h1>Политика конфиденциальности</h1>
+        <p class="subtitle">Приложение «КупимВместе» (BuyTogether) • Обновлено: 22 ноября 2026 г.</p>
+      </div>
+      <div data-lang="en">
+        <h1>Privacy Policy</h1>
+        <p class="subtitle">BuyTogether (КупимВместе) App • Last updated: November 22, 2026</p>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <article class="card" data-lang="ru">
+        <div class="meta-box">
+          <div><strong>Приложение</strong>КупимВместе (BuyTogether)</div>
+          <div><strong>Идентификатор пакета</strong>com.brobroapps.buytogether</div>
+          <div><strong>Контакт разработчика</strong><a href="mailto:brobroapps@gmail.com">brobroapps@gmail.com</a></div>
+        </div>
+
+        <p>Настоящая Политика конфиденциальности описывает, какие данные собирает и обрабатывает мобильное приложение <strong>«КупимВместе»</strong> (далее — «Приложение»), как они используются, защищаются и каким образом вы можете удалить свой аккаунт и связанные с ним данные.</p>
+
+        <h2>1. Какие данные мы собираем</h2>
+        <h3>1.1. Данные учётной записи (через вход Google)</h3>
+        <ul>
+          <li>Уникальный идентификатор пользователя (Firebase UID);</li>
+          <li>Адрес электронной почты Google-аккаунта;</li>
+          <li>Отображаемое имя (псевдоним, который вы можете изменить в профиле в любой момент) и инициалы;</li>
+          <li>URL аватара профиля Google (если он предоставлен аккаунтом).</li>
+        </ul>
+
+        <h3>1.2. Данные, создаваемые вами в Приложении</h3>
+        <ul>
+          <li>Личные списки покупок, названия товаров, количество, единицы измерения, отметки о покупке и наборы популярных товаров (хранятся приватно и доступны только вам);</li>
+          <li>Общие группы, 6-значные коды приглашения, списки покупок и товары внутри групп, а также права доступа участников;</li>
+          <li>История действий (кто и когда добавил, отметил купленным, вернул, изменил или удалил товар/список) — для удобства совместной работы.</li>
+        </ul>
+
+        <h3>1.3. Технические данные и локальные настройки</h3>
+        <ul>
+          <li>Локальные настройки на устройстве (выбранный язык интерфейса, тема оформления, статус завершения обучения, последняя открытая группа) — хранятся только в памяти вашего устройства;</li>
+          <li>Токены целостности устройства и защиты от злоупотреблений через <strong>Firebase App Check / Google Play Integrity API</strong> — используются исключительно для проверки подлинности приложения и защиты серверов от несанкционированных запросов.</li>
+        </ul>
+
+        <h2>2. Какие разрешения и данные НЕ собираются</h2>
+        <ul>
+          <li>Приложение запрашивает только базовые сетевые разрешения (<code>INTERNET</code>, <code>ACCESS_NETWORK_STATE</code>).</li>
+          <li>Мы <strong>не запрашиваем</strong> доступ к камере, микрофону, геолокации, контактам, SMS, журналу звонков или файловому хранилищу устройства.</li>
+          <li>В Приложении <strong>нет рекламы</strong>, рекламных SDK и отслеживания рекламного идентификатора (Advertising ID).</li>
+          <li>Мы не продаём и не передаём ваши персональные данные третьим лицам для маркетинга.</li>
+        </ul>
+
+        <h2>3. Как используются и хранятся данные</h2>
+        <ul>
+          <li><strong>Аутентификация:</strong> вход через Google (Jetpack Credential Manager + Firebase Authentication) используется только для создания и защиты вашей учётной записи.</li>
+          <li><strong>Синхронизация:</strong> ваши списки и общие группы хранятся в облачной базе данных <strong>Google Cloud Firestore</strong> с применением строгих правил безопасности: доступ к личным спискам имеет только владелец, а к общим группам — только их текущие участники по коду приглашения.</li>
+          <li><strong>Передача по защищённому каналу:</strong> все данные передаются в зашифрованном виде по протоколу HTTPS / TLS.</li>
+        </ul>
+
+        <h2>4. Сроки хранения данных</h2>
+        <ul>
+			<li><strong>Профиль, личные списки и группы</strong> хранятся до тех пор, пока ваш аккаунт активен, пока вы сами не удалите их или свой аккаунт, либо до прекращения работы Приложения / его отдельных функций.</li>
+			<li>Мы оставляем за собой право автоматически удалять неактивные учётные записи и связанные с ними данные (например, при отсутствии входа в Приложение более 12 месяцев), а также полностью удалить все данные при закрытии проекта.</li>
+			<li><strong>История действий</strong> в личных списках и общих группах хранится <strong>7 дней</strong>, после чего автоматически удаляется.</li>
+		</ul>
+
+        <h2>5. Удаление аккаунта и данных</h2>
+        <p>Вы можете в любой момент полностью удалить свой аккаунт и связанные с ним данные:</p>
+        <ul>
+          <li><strong>Внутри приложения:</strong> перейдите на вкладку <em>«Профиль» → «Удалить аккаунт»</em>. После подтверждения будут немедленно и безвозвратно удалены ваша учётная запись, профиль, все личные списки и их история, группы, где вы являетесь владельцем (вместе со списками, товарами, историей и кодами приглашений), а также ваше участие во всех остальных группах.</li>
+          <li><strong>Через веб-страницу (без входа в приложение):</strong> вы можете отправить запрос на удаление на нашей отдельной публичной странице.</li>
+        </ul>
+
+        <div class="cta-box">
+          <div>
+            <strong>Нужно удалить аккаунт без входа в приложение?</strong><br>
+            Воспользуйтесь публичной формой запроса на удаление данных.
+          </div>
+          <a class="cta-btn" href="./delete-account.html">Запросить удаление аккаунта →</a>
+        </div>
+
+        <h2>6. Конфиденциальность детей</h2>
+        <p>Приложение предназначено для широкой аудитории и семейного планирования покупок и не предназначено специально для сбора персональных данных детей младше 13 лет (или соответствующего возраста согласия в вашей юрисдикции) без согласия родителей.</p>
+
+        <h2>7. Изменения политики и контакты</h2>
+        <p>Мы можем периодически обновлять данную Политику конфиденциальности. Актуальная версия всегда доступна по этому адресу.</p>
+        <p>По любым вопросам о конфиденциальности и защите данных пишите на: <a href="mailto:brobroapps@gmail.com">brobroapps@gmail.com</a>.</p>
+      </article>
+
+      <article class="card" data-lang="en">
+        <div class="meta-box">
+          <div><strong>Application</strong>BuyTogether (КупимВместе)</div>
+          <div><strong>Package Name</strong>com.brobroapps.buytogether</div>
+          <div><strong>Developer Contact</strong><a href="mailto:brobroapps@gmail.com">brobroapps@gmail.com</a></div>
+        </div>
+
+        <p>This Privacy Policy explains what information the <strong>BuyTogether</strong> (<em>КупимВместе</em>) mobile application ("the App") collects, how it is used and protected, and how you can delete your account and associated data.</p>
+
+        <h2>1. Information We Collect</h2>
+        <h3>1.1. Account Information (via Google Sign-In)</h3>
+        <ul>
+          <li>Unique user identifier (Firebase UID);</li>
+          <li>Google Account email address;</li>
+          <li>Display name (which you may customize anytime in Profile) and initials;</li>
+          <li>Google profile avatar URL (when provided by your Google account).</li>
+        </ul>
+
+        <h3>1.2. User-Created Content</h3>
+        <ul>
+          <li>Personal shopping lists, items, quantities, units, purchase status, and custom quick items (stored privately and accessible only to you);</li>
+          <li>Shared shopping groups, 6-character invite codes, group lists and items, and member permissions;</li>
+          <li>Activity history entries (who added, bought, returned, edited, or deleted an item/list) for group collaboration.</li>
+        </ul>
+
+        <h3>1.3. Technical &amp; Local Preferences</h3>
+        <ul>
+          <li>Local device preferences (selected app language, theme mode, tutorial completion state, last visited group ID) — stored strictly on your device;</li>
+          <li>App integrity tokens via <strong>Firebase App Check / Google Play Integrity API</strong> — used solely to verify genuine app requests and protect backend resources from abuse.</li>
+        </ul>
+
+        <h2>2. Data &amp; Permissions We Do NOT Collect</h2>
+        <ul>
+          <li>The App declares only standard network permissions (<code>INTERNET</code>, <code>ACCESS_NETWORK_STATE</code>).</li>
+          <li>We <strong>do not request</strong> access to your camera, microphone, location, contacts, SMS, call logs, or external storage.</li>
+          <li>The App contains <strong>no ads</strong>, no ad networks, and does not access your Advertising ID.</li>
+          <li>We never sell or rent your personal data to third parties.</li>
+        </ul>
+
+        <h2>3. How Data Is Used &amp; Secured</h2>
+        <ul>
+          <li><strong>Authentication:</strong> Google Sign-In (Jetpack Credential Manager + Firebase Authentication) is used exclusively to sign you in and isolate your account data.</li>
+          <li><strong>Cloud Sync:</strong> Lists and groups are stored in <strong>Google Cloud Firestore</strong> protected by strict security rules ensuring personal lists are accessible only to you and shared groups only to current members.</li>
+          <li><strong>Encryption in Transit:</strong> All communication between the App and Google/Firebase servers is encrypted via HTTPS/TLS.</li>
+        </ul>
+
+        <h2>4. Data Retention</h2>
+        <ul>
+          <li><strong>Profile, personal lists, and shared groups</strong> are retained while your account remains active, until you delete them or delete your account, or until the App (or its relevant features) is discontinued.</li>
+		  <li>We reserve the right to automatically delete inactive accounts and associated data (for example, after 12 months of inactivity), as well as to permanently delete all data if the project is shut down.</li>
+		  <li><strong>Activity history logs</strong> are kept for <strong>7 days</strong> and then automatically purged.</li>
+        </ul>
+
+        <h2>5. Account &amp; Data Deletion</h2>
+        <p>You can permanently delete your account and personal data at any time:</p>
+        <ul>
+          <li><strong>Inside the App:</strong> Open <em>Profile → Delete account</em>. Confirming immediately deletes your Firebase Auth account, user profile, all personal lists/items/history, any groups you own (along with their lists, items, history, and invite codes), and removes your membership from all other groups.</li>
+          <li><strong>Via Web Request (without opening the App):</strong> Submit a deletion request using our dedicated public deletion page.</li>
+        </ul>
+
+        <div class="cta-box">
+          <div>
+            <strong>Want to request deletion without opening the App?</strong><br>
+            Use our public Account &amp; Data Deletion page.
+          </div>
+          <a class="cta-btn" href="./delete-account.html">Request Account Deletion →</a>
+        </div>
+
+        <h2>6. Children's Privacy</h2>
+        <p>The App is a general-audience family shopping tool and is not directed to children under 13 (or the minimum age required in your jurisdiction) without parental consent.</p>
+
+        <h2>7. Changes &amp; Contact</h2>
+        <p>We may update this Privacy Policy from time to time. The latest version is always published on this page.</p>
+        <p>If you have questions about privacy or data deletion, contact: <a href="mailto:brobroapps@gmail.com">brobroapps@gmail.com</a>.</p>
+      </article>
+    </div>
+  </main>
+
+  <footer>
+    © 2026 КупимВместе / BuyTogether • <a href="mailto:brobroapps@gmail.com">brobroapps@gmail.com</a>
+  </footer>
+
+  <script>
+    function setLang(lang) {
+      document.body.classList.toggle('en', lang === 'en');
+      document.documentElement.lang = lang;
+      document.getElementById('btn-ru').classList.toggle('active', lang === 'ru');
+      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+      try { localStorage.setItem('gp_lang', lang); } catch (e) {}
+    }
+    (function() {
+      const urlLang = new URLSearchParams(location.search).get('lang');
+      const saved = (function(){ try { return localStorage.getItem('gp_lang'); } catch(e){ return null; } })();
+      const init = urlLang || saved || (navigator.language && navigator.language.startsWith('en') ? 'en' : 'en');
+      //if (init === 'ru') setLang('ru');
+    })();
+  </script>
+</body>
+</html>
